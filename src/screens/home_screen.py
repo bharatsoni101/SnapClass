@@ -1,10 +1,11 @@
 import streamlit as st
 
+from src.components.footer import footer_home
 from src.components.header_home import header_home
 from src.ui.base_layout import base_layout_home, style_base_layout
 
 def home_screen():
-    st.header("Home Screen")
+    # st.header("Home Screen")
 
     header_home()
     base_layout_home()
@@ -12,10 +13,16 @@ def home_screen():
 
     col1, col2 = st.columns(2, gap='large')
     with col1:
-        if st.button('Login as Teacher', type='primary', key='teacher_btn', width='stretch'):
-            st.session_state['login_type'] = 'teacher'
-            st.rerun()
-    with col2:
-        if st.button('Login as Student', type='primary', key='student_btn', width='stretch'):
+        st.header("I'm Student")
+        st.image("https://i.ibb.co/844D9Lrt/mascot-student.png", width=120)
+        if st.button('Login as Student', type='primary', key='student_btn', icon=':material/arrow_outward:'):
             st.session_state['login_type'] = 'student'
             st.rerun()
+    with col2:
+        st.header("I'm Teacher")
+        st.image("https://i.ibb.co/CsmQQV6X/mascot-prof.png", width=145)
+        if st.button('Login as Teacher', type='primary', key='teacher_btn', icon=':material/arrow_outward:'):
+            st.session_state['login_type'] = 'teacher'
+            st.rerun()
+
+    footer_home()
