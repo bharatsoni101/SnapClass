@@ -4,6 +4,7 @@ pandas # for data manipulation and analysis
 #face recognition
 scikit-learn # for machine learning algorithms used in face recognition
 dlib-bin # precompiled dlib wheel for Windows, compatible with Python 3.13 and 64-bit architecture
+#https://github.com/z-mahmud22/Dlib_Windows_Python3.x
 #dlib-20.0.99-cp313-cp313-win_amd64.whl
 git+https://github.com/ageitgey/face_recognition_models
 setuptools<70.0.0
