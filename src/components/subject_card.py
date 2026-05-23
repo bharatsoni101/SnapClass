@@ -2,21 +2,21 @@ import streamlit as st
 
 def subject_card(name, code, section, stats, footer_callback=None):
 
-    st.markdown(f"""
-        <div id="main1" style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; background-color: #f9f9f9;">
-            <h3 style="margin: 0 0 8px 0;">{name}</h3>
-            <p style="margin: 0 0 8px 0; color: #555;">Code: {code} | Section: {section}</p>
-            <div style="display: flex; gap: 16px; margin-top:   16px;">
-    """, unsafe_allow_html=True)
+    html = f"""
+        <div style="background:white; border-left: 8px solod #Eb459E; padding: 25px; border-radius: 20px; border: 1px solid black; margin-bottom: 20px;">
+        <h3 style="margin: 0; color: #1e293b; font-size:1.5rem ">{name}</h3>
+        <p style="color:#64748b; margin: 10px 0;">Code: <span style="background:#E0E3FF; color:#5B65F2; padding:2px 8px; border-radius: 5px;">{code}</span> | Section: {section}</p>
+        """
+
     if stats:
+        # html+= f"""
+        #     <div style="display:flex; gap: 8px; flex-wrap:wrap;">
+        # """
         for icon, label, value in stats:
-            st.markdown(f"""
-                <div id="stats2" style="display: flex; align-items: center; gap: 4px;">
-                    <span style="font-size: 20px;">{icon}</span>
-                    <span style="color: #555;">{label}: {value}</span>
-                </div>
-            """, unsafe_allow_html=True)
-    st.markdown("</div></div>", unsafe_allow_html=True)
+            html+= f'<div style="background: #Eb459E10; padding:5px 12px; border-radius:12px; font-size:0.9rem">{icon}<b>{value}</b> {label}</div>'
+        # html+= "</div>"
+
+    st.markdown(html, unsafe_allow_html=True)
 
     if footer_callback:
         footer_callback()
