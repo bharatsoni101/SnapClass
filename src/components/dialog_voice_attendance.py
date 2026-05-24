@@ -48,7 +48,7 @@ def voice_attendance_dialog(selected_subject_id):
                 results.append({
                     "Name": student['name'],
                     "ID": student['student_id'],
-                    "Source": score if is_present else "-",
+                    "Source": f"{score*100:.2f}%" if is_present else "-",
                     "status": " ✅ Present" if is_present else " ❌ Absent"
                 })
 
