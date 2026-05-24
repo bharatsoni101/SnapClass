@@ -125,7 +125,7 @@ def teacher_tab_take_attendance():
             st.rerun()
     with c2:
 
-        if st.button('Run face Analysis', type='secondary', width='stretch', icon=":material/thumb_up:", disabled=not has_photos, key='run_analysis_btn'):
+        if st.button('Run face Analysis', type='secondary', width='stretch', icon=":material/analytics:", disabled=not has_photos, key='run_analysis_btn'):
             all_detected_ids = {}
 
             for idx, img in enumerate(st.session_state.attendance_images):
@@ -149,7 +149,7 @@ def teacher_tab_take_attendance():
                 current_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 for node in enrolled_students:
                     student = node['students']
-                    sources = all_detected_ids.get(int(student_id), [])
+                    sources = all_detected_ids.get(int(student['student_id']), [])
                     is_present = len(sources) > 0
 
                     results.append({
