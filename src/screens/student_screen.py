@@ -66,8 +66,10 @@ def student_dashboard() :
 
         stats = stats_map.get(sid, {'attended': 0, 'total': 0})
         def unenroll_btn():
-            if st.button("Unenroll from this course", type="tertiary", width="stretch"):
+            if st.button("Unenroll from this course", type="tertiary", width="stretch", key=f'unenroll_{sid}', icon=':material/delete_forever:'):
                 unenroll_student_to_subject(student_id, sid)
+                st.success(f"Successfully unenrolled from {sub['name']} subject!")
+                st.rerun()
 
         with cols[i % 2]:
             subject_card(
@@ -149,10 +151,14 @@ def student_screen():
                 audio_data = st.audio_input("Record a short phrase like I am present, My name is Akash. ")
             except Exception as e:
                 st.error ('Audio data failed!')
+                return
 
             if st.button('Create Account', type='primary'):
                 if new_name:
                     with st.spinner('Creating profile...'):
+                        if not photo_source :
+                            st.error("Click on 'Take photo' button to capture your face for registration.")
+                            return
                         img = np.array(Image.open(photo_source))
                         encodings = get_face_embeddings(img)
                         if encodings:
@@ -161,6 +167,9 @@ def student_screen():
                             voice_emb = None
                             if audio_data:
                                 voice_emb = get_voice_embedding(audio_data.read())
+                            if not voice_emb :
+                                st.error('Voice embedding failed or not provided. Proceeding with face embedding only.')
+                                return
                             response_data = create_student(new_name, face_embedding=face_emb, voice_embedding=voice_emb)
 
                             if response_data:

@@ -1,3 +1,4 @@
+streamlit # for building the web application interface
 numpy # for numerical computations
 pandas # for data manipulation and analysis
 
@@ -15,7 +16,7 @@ bcrypt # for password hashing
 segno # for QR code generation
 pillow # for image processing, required by segno for QR code generation
 
-streamlit # for building the web application interface
+
 
 librosa # for audio processing, used in voice recognition
 resemblyzer # for speaker verification and voice recognition, compatible with Python 3.13 and 64-bit architecture
